@@ -25,7 +25,11 @@ if(isset($_POST['Submit'])){
       
         $insert_sql = "INSERT INTO GymMember (MemberID, PhoneNumber, FirstName, LastName, Username, Passwordd, Email, Gender) VALUES ($memberId, '$phoneNumber', '$fName', '$lName', '$username', '$password', '$email', '$gender')";
         if(mysqli_query($conn, $insert_sql)) {
-            echo "<script>alert('Registration successful')</script>";
+
+                header('Location: member1.html');
+          
+                exit;
+       
         } else {
             echo "<script>alert('Registration failed')</script>";
         }
@@ -58,7 +62,7 @@ mysqli_close($conn);
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.8); 
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -84,7 +88,7 @@ mysqli_close($conn);
         input[type="tel"],
         select,
         textarea {
-            width: calc(100% - 22px); /* Adjusted width for border */
+            width: calc(100% - 22px); 
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -165,23 +169,23 @@ mysqli_close($conn);
             <div style="display: flex; flex-wrap: wrap;">
                 <div style="flex-basis: 48%;">
                     <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" placeholder="First Name" name="firstName" required>
                 </div>
                 <div style="flex-basis: 48%;">
                     <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" placeholder="Last Name" name="lastName" required>
                 </div>
                 <div style="flex-basis: 100%;">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username " placeholder="Username" name="username" required>
                 </div>
                 <div style="flex-basis: 100%;">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" placeholder="Email" name="email" required>
                 </div>
                 <div style="flex-basis: 48%;">
                     <label for="phoneNumber">Phone Number:</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                    <input type="tel" id="phoneNumber" placeholder="Phone Number" name="phoneNumber" required>
                 </div>
                 <div style="flex-basis: 48%;">
                     <label for="gender">Gender:</label>
@@ -193,15 +197,15 @@ mysqli_close($conn);
                 </div>
                 <div style="flex-basis: 48%;">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" placeholder="Password" name="password" required>
                 </div>
                 <div style="flex-basis: 48%;">
                     <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" required>
                 </div>
                 <div style="flex-basis: 100%;">
                     <label for="message">Message:</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <textarea id="message" name="message" placeholder="Message" required></textarea>
                 </div>
                 <div style="flex-basis: 100%;">
                     <input type="submit" value="Submit" name = "Submit">
@@ -219,21 +223,7 @@ mysqli_close($conn);
     </div>
 
     <script>
-       document.getElementById('contactForm').addEventListener('submit', function(event) {
-    if (!validateForm()) {
-        event.preventDefault();
-    } else {
-        var formData = new FormData(this);
-        setTimeout(function() {
-            console.log('Form data:', formData);
-            var successMessage = document.querySelector('.success-message');
-            successMessage.textContent = 'Account created successfully';
-            successMessage.style.display = 'block';
-            document.getElementById('contactForm').reset();
-        }, 1000);
-    }
-});
-
+ 
         function validateForm() {
             var inputs = document.querySelectorAll('input, select, textarea');
             var errorMessage = document.querySelector('.error-message');
