@@ -47,7 +47,7 @@ mysqli_close($conn);
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('11.jpg'); 
+            background-image: url('images/11.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -92,7 +92,7 @@ mysqli_close($conn);
         }
 
         select {
-            appearance: none; /* Remove default styling */
+            appearance: none;
         }
 
         textarea {

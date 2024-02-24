@@ -39,7 +39,7 @@ if(isset($_POST['Submit'])){
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('11.jpg'); 
+            background-image: url('images/11.jpg'); 
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
