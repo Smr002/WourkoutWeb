@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('11.jpg'); 
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; 
+    }
+    
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    
+   
+    
+    .section {
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin: 20px;
+      text-align: center;
+    }
+    
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    button {
+      margin: 10px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+    }
+    
+    h1 {
+      font-size: 42px;
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    p {
+      font-size: 20px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to Your Fitness Journey</h1>
+        <a href ="wourkout.html">
+        <button>Your First Free Workout</button>
+    </a>
+        <div class="section" id="aboutSection">
+          <p>Explore and choose your path:</p>
+          <div class="button-container">
+           
+            
+            <a href="http://localhost/gym/acc.php">
+                <button>Open an account to show more Workout </button>
+              </a>
+           
+          </div>
+        </div>
+    <div class="footer">
+      &copy; 2023 Your Fitness Journey. All rights reserved.
+    </div>
+  </div>
+  <script>
+    function animateSection() {
+      var section = document.getElementById('aboutSection');
+      var sectionPosition = section.getBoundingClientRect().top;
+      var screenHeight = window.innerHeight;
+
+      if (sectionPosition < screenHeight) {
+        section.classList.add('show');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', animateSection);
+    window.addEventListener('scroll', animateSection);
+  </script>
+</body>
+</html>
