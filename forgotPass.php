@@ -9,20 +9,25 @@ if(isset($_POST['enter'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
     $newPassword = $_POST['newPassword'];
-    $sql = "SELECT * FROM GymMember WHERE Username = '$username' AND Passwordd = '$password'";
+    $sql = "SELECT * FROM GymMember WHERE Username = '$username'";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $resultPassword = $row['Passwordd']; 
 
-        
-
-        $updateSql = "UPDATE GymMember SET Passwordd = '$newPassword' WHERE Username = '$username'";
-        if(mysqli_query($conn, $updateSql)) {
- 
-            echo "<script>alert('Password reset successful. Your new password is: $newPassword')</script>";
-            header('Location: member1.html');
+        if(password_verify($password , $resultPassword)) {
+            $hashed_password = password_hash($newPassword, PASSWORD_DEFAULT);
+            $updateSql = "UPDATE GymMember SET Passwordd = '$hashed_password' WHERE Username = '$username'";
+            if(mysqli_query($conn, $updateSql)) {
+                echo "<script>alert('Password reset successful. Your new password is: $newPassword')</script>";
+                header('Location: member1.html');
+                exit();
+            } else {
+                echo "<script>alert('Password reset failed')</script>";
+            }
         } else {
-            echo "<script>alert('Password reset failed')</script>";
+            echo "<script>alert('Incorrect password')</script>";
         }
     } else {
         echo "<script>alert('Username not found')</script>";
@@ -32,6 +37,7 @@ if(isset($_POST['enter'])){
 }
 
 ?>
+
 
 
 <!DOCTYPE html>

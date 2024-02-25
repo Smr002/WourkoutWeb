@@ -16,7 +16,7 @@ if(isset($_POST['loginButton'])){
         while($row = mysqli_fetch_assoc($result)) {
             $resultPassword = $row['Passwordd']; 
 
-            if($password == $resultPassword) { 
+            if(password_verify($password , $resultPassword)) { 
                 header('Location: member1.html');
                 exit;
             }else{
