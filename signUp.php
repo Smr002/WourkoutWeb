@@ -15,6 +15,8 @@ if(isset($_POST['Submit'])){
     $memberId = rand(0,1000); 
     $phoneNumber = $_POST['phoneNumber'];
 
+ 
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $check_username_sql = "SELECT * FROM GymMember WHERE Username = '$username'";
     $check_username_result = mysqli_query($conn, $check_username_sql);
@@ -23,13 +25,10 @@ if(isset($_POST['Submit'])){
         echo "<script>alert('Username already exists')</script>";
     } else {
       
-        $insert_sql = "INSERT INTO GymMember (MemberID, PhoneNumber, FirstName, LastName, Username, Passwordd, Email, Gender) VALUES ($memberId, '$phoneNumber', '$fName', '$lName', '$username', '$password', '$email', '$gender')";
+        $insert_sql = "INSERT INTO GymMember (MemberID, PhoneNumber, FirstName, LastName, Username, Passwordd, Email, Gender) VALUES ($memberId, '$phoneNumber', '$fName', '$lName', '$username', '$hashed_password', '$email', '$gender')";
         if(mysqli_query($conn, $insert_sql)) {
-
-                header('Location: member1.html');
-          
-                exit;
-       
+            header('Location: member1.html');
+            exit;
         } else {
             echo "<script>alert('Registration failed')</script>";
         }
@@ -38,6 +37,7 @@ if(isset($_POST['Submit'])){
 
 mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>

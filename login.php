@@ -1,4 +1,8 @@
 <?php
+
+    if(isset($_POST['signUp'])){
+        header('Location:signUp.php');
+    }else{
 $conn = mysqli_connect("localhost", "root", "", "wourkout_web");
 
 if (!$conn) {
@@ -17,7 +21,7 @@ if(isset($_POST['loginButton'])){
             $resultPassword = $row['Passwordd']; 
 
             if(password_verify($password , $resultPassword)) { 
-                header('Location: member1.html');
+                header('Location: demoPageMember.html');
                 exit;
             }else{
                 echo "<script>alert('Login unsuccessful')</script>";
@@ -28,10 +32,8 @@ if(isset($_POST['loginButton'])){
     } else {
         echo "<script>alert('Username not found')</script>";
     }
-
-  
     mysqli_close($conn);
-}
+}}
 ?>
 
 <!DOCTYPE html>
@@ -148,9 +150,8 @@ if(isset($_POST['loginButton'])){
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <input type="submit" value="Login" name="loginButton">
-            <div class="forget-password-container">
-                     <a href="http://localhost/gym/forgotPass.php">
-                <button id="forgetPassword" type="button">Forgot Password?</button>
+            <input type="submit"  value="SignUp" name="signUp"> 
+
 
             </div>
             <div class="error-message" id="error-message"></div>
@@ -160,13 +161,7 @@ if(isset($_POST['loginButton'])){
 
     <script>
       
-
-        document.getElementById('forgetPassword').addEventListener('click', function() {
-          
-            alert('Forgot Password clicked!');
-        });
-
-        function validateForm() {
+      function validateForm() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             var isValid = true;
